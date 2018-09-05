@@ -1,0 +1,13 @@
+<nav class="site-menu">
+    <div class="wrapper">
+
+        {% include "site_header_search.html" %}
+
+        <ul id="menu" class="site-menu__links">
+          {% with include_sub_menu_entries=1 %}
+            {% include 'menu_entries.html' %}
+          {% endwith %}
+        </ul>
+
+    </div>
+</nav>
