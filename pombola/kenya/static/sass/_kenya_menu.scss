@@ -1,19 +1,12 @@
 $no-frills-menu-breakpoint: 840px;
 $no-menu-breakpoint: 640px;
-$menu-background-color: #222;
 
 .site-menu {
-    background: $menu-background-color;
+    background: $colour_dark_grey;
+    border-top: 4px solid $colour_red;
 
     ul {
-        // TODO: Consider moving @mixin unstyled-list out of
-        // _south-africa_overrides.scss and into one of the
-        // core Sass files, so both KE and ZA can inherit it.
-        padding-left: 0;
-        margin-bottom: 0;
-        li {
-          list-style: none;
-        }
+        @include unstyled-list();
     }
 
     a {

@@ -4,25 +4,38 @@ $logo-height-large: 40px;
 $logo-width-large: 165px;
 
 .site-header {
+    @include clearfix();
     background-image: none;
     background-color: $colour_deep_green;
+    padding: 10px 0;
+
+    @media (min-width: 640px), print {
+        padding: 1em 0;
+    }
+
+    // Naughtily overload the wrapper to also *vertically* centre it contents,
+    // in addition to the horizontal padding/centering you'd normally expect.
+    .wrapper {
+        @include display-flex();
+        @include align-items(center);
+    }
 }
 
-.site-header__logo {
-    height: 35px;
+.site-header__logo-svg,
+.site-header__no-svg-fallback-logo {
+    height: $logo-height-small;
     width: $logo-width-small;
     display: inline-block;
+    float: left;
 
     @media (min-width: 640px), print {
         height: $logo-height-large;
         width: $logo-width-large;
-        top: 10px;
-        position: relative;
         padding: 0;
     }
 }
 
-.site-logo-svg {
+.site-header__logo-svg {
     display: none;
 
     .svg & {
@@ -32,7 +45,6 @@ $logo-width-large: 165px;
     svg {
         height: $logo-height-small;
         width: $logo-width-small;
-        margin-top: (35px - $logo-height-small) * 0.5;
 
         @media (min-width: 640px), print {
             height: $logo-height-large;
@@ -42,7 +54,7 @@ $logo-width-large: 165px;
     }
 }
 
-.no-svg-fallback-logo {
+.site-header__no-svg-fallback-logo {
     background: url('/static/images/mzalendo-logo-small.png') left center no-repeat;
     background-size: $logo-width-small;
     overflow: hidden;
@@ -60,8 +72,13 @@ $logo-width-large: 165px;
 }
 
 .site-header__tagline {
-    display: block;
-    color: mix($colour_primary_mid, #fff, 30%);
+    display: none;
+    color: mix($colour_deep_green, #fff, 30%);
+    margin-left: 1em;
+
+    @media (min-width: 640px), print {
+        display: block;
+    }
 }
 
 // TODO: Consider changing to a class?
@@ -83,5 +100,57 @@ $logo-width-large: 165px;
         float: none;
         border-radius: 4px;
         background-color: rgba(#f00, 0.5);
+    }
+}
+
+.site-header__social {
+    @include unstyled-list();
+    float: right;
+    margin: 0 0 0 auto;
+
+    li {
+        float: left;
+        margin: 0;
+    }
+
+    a {
+        display: block;
+        margin-left: 1em;
+
+        svg {
+            display: block; // avoid whitespace below svg
+            width: 24px;
+            height: 24px;
+
+            @media (min-width: 640px), print {
+                width: 36px;
+                height: 36px;
+            }
+        }
+    }
+
+    a[href*="youtube.com"] {
+        display: none;
+
+        @media (min-width: 400px), print {
+            display: block;
+        }
+
+        svg {
+            width: (24px / 36 * 52);
+
+            @media (min-width: 640px), print {
+                width: 52px;
+            }
+        }
+    }
+}
+
+#ms_srv_wrapper {
+    background-color: $colour_red;
+
+    & + .site-menu {
+        // No need for red border if red survey bar is present.
+        border-top: none;
     }
 }
