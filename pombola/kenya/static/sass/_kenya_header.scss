@@ -81,28 +81,6 @@ $logo-width-large: 165px;
     }
 }
 
-// TODO: Consider changing to a class?
-// See site_header_search.html in core.
-#header-search {
-    margin: 0;
-    float: none;
-
-    input {
-        border-radius: 4px;
-        padding: 0;
-        height: auto;
-        float: none;
-        border: none;
-        font-size: 1em;
-    }
-
-    button {
-        float: none;
-        border-radius: 4px;
-        background-color: rgba(#f00, 0.5);
-    }
-}
-
 .site-header__social {
     @include unstyled-list();
     float: right;
