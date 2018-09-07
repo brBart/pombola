@@ -25,8 +25,11 @@ $logo-width-large: 165px;
 .site-header__no-svg-fallback-logo {
     height: $logo-height-small;
     width: $logo-width-small;
-    display: inline-block;
-    float: left;
+    display: block;
+
+    .site-header & {
+        float: left;
+    }
 
     @media (min-width: 640px), print {
         height: $logo-height-large;
@@ -39,7 +42,7 @@ $logo-width-large: 165px;
     display: none;
 
     .svg & {
-        display: inline-block;
+        display: block;
     }
 
     svg {
